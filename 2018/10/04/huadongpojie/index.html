@@ -17,8 +17,8 @@
 <p></p><p id="2"> <br><br> 图像拼接:</p><br>等等，为什么乱了？<p></p>
 <p>对，如果我们仔细观察，我们发现图片是被切割打乱了的，而且，我们判断，如果想得到原图，一定是要像拼积木一样把这些小块重新排列组合,那么，有什么规律在其中呢？我们该怎样一个一个拼呢？<br>其实，不难发现，我们在打开那两个标签后，我们发现一些整整齐齐的从上到下的标签，并且还有   <code>position</code>属性，x,值以12为差，最小1 最大 277，但y只有 0 或 58，由此分析出，从上到下，是我们取积木的顺序，取打乱图的第一个(x,y)坐标点对应处的一块积木，然后拼接到一个空白框的左上角，然后接着从乱图里面取出第二个位置的积木，紧挨着刚才那一个向右，此行满了换下一行，以此类推,最终得到一个完整图。<br>这样的话，我们的分析就结束了，然后我们通过像素比较就可以找出，缺口的位置，然后模拟拖动就ok了。<br>注意，实际应用中，我们需要实验性模拟拖动几次，再对拖动距离distance进行微修正，从而提高准确率。<br><br><br><br><a href="https://paste.ubuntu.com/p/y7PSVFdxsJ/" target="_blank" rel="noopener">源码</a><br><br><br><a href="https://www.jianshu.com/p/c8df1194b514" target="_blank" rel="noopener">参考博客</a></p>
 </div><div class="tags"><a href="/tags/爬虫/">爬虫</a></div><div class="post-nav"><a class="pre" href="/2018/10/07/photo/">关于海</a><a class="next" href="/2018/10/02/learn_MarkDown/">快速熟悉 markdown</a></div><div id="container"></div><link rel="stylesheet" href="https://35p32.github.io/gitment/style/default.css"><script src="https://35p32.github.io/gitment/dist/gitment.browser.js"></script><script>var gitment = new Gitment({
-  owner: '35p32',
-  repo: 'all_comments',
+  owner: '',
+  repo: '',
   oauth: {
     client_id: 'e40571b1a5ccce57c5c4',
     client_secret: 'e7020e3140ee19bf8bea9bceece0133736bc5057',

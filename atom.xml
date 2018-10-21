@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="httpsp://yoursite.com/"/>
-  <updated>2018-10-20T09:45:36.168Z</updated>
+  <updated>2018-10-21T14:08:15.830Z</updated>
   <id>httpsp://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不该死的人，还活着</title>
+    <link href="httpsp://yoursite.com/2018/10/21/nuisance/"/>
+    <id>httpsp://yoursite.com/2018/10/21/nuisance/</id>
+    <published>2018-10-21T14:08:04.533Z</published>
+    <updated>2018-10-21T14:08:15.830Z</updated>
+    
+    <content type="html"><![CDATA[<p>我再次体会到将要放弃的感觉，此刻我想的并不是，黑色成为黑色的原因，而是眼前的红色为什么这么刺眼。<br><a id="more"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我再次体会到将要放弃的感觉，此刻我想的并不是，黑色成为黑色的原因，而是眼前的红色为什么这么刺眼。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="话" scheme="httpsp://yoursite.com/tags/%E8%AF%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>qppium模拟---微信朋友圈</title>
+    <link href="httpsp://yoursite.com/2018/10/20/wechatspider/"/>
+    <id>httpsp://yoursite.com/2018/10/20/wechatspider/</id>
+    <published>2018-10-20T14:38:13.269Z</published>
+    <updated>2018-10-20T14:38:13.271Z</updated>
+    
+    <content type="html"><![CDATA[<p>//挖的关于appium的坑<br><a id="more"></a></p><p>###</p><ol><li>qppium介绍</li><li>爬取思路</li><li>代码实现</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;//挖的关于appium的坑&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="爬虫" scheme="httpsp://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>MongoDB</title>
@@ -41,19 +81,13 @@
     <link href="httpsp://yoursite.com/2018/10/08/sougoupachong/"/>
     <id>httpsp://yoursite.com/2018/10/08/sougoupachong/</id>
     <published>2018-10-08T15:33:42.293Z</published>
-    <updated>2018-10-14T09:27:13.960Z</updated>
+    <updated>2018-10-20T09:54:19.440Z</updated>
     
-    <content type="html"><![CDATA[ <a id="more"></a><p>我写这篇博客的目的是，是尝试搞懂我最近做了什么，内容含金量上，我觉得很差。</p><p>我们为什么要用代理池？<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">部分网站有反爬虫措施，当我们使用一个ip地址对该网站进行过多的访问时，会被反爬虫机制自动视为爬虫，从而ip拉黑.</span><br></pre></td></tr></table></figure><p>代理池的构建是怎样的？<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对网上的免费ip代理网站进行爬取(西刺，proxy360)，它们网站的ip源是完全暴露在网页源码上的，我们只用简单的进行分析，就可以拿到足够的ip.</span><br></pre></td></tr></table></figure><p>如此一来，思路很清晰，设计一个爬虫，针对几个免费的网站解析爬取，将拿到 ip 进行筛选，排名，存入数据库。  并可以实现获取接口，即调即用。</p><p><code>基本模块分为 4块：存储模块、获取模块、检测模块、接口模块</code></p><p>###</p><ol><li><p>存储模块： 负责存储抓取下来的代理。 首先要保证代理不重复， 要标识代理的可用情况，还 要动态实时处理每个代理，所以一种比较高效和方便的存储方式就是使用 Redis 的 Sorted Set，即有序集合。</p></li><li><p>获取模块： 需要定时在各大代理网站抓取代理。 代理可以是免费公开代理也可以是付费代 理，代理的形式都是 IP 加端口，此模块尽量从不同来源获取，尽量抓取高匿代理，抓取成功 之后将可用代理保存到数据库中。 </p></li><li><p>检测模块： 需要定时检测数据库中的代理。 这里需要设置一个检测链接，最好是爬取哪个网 站就检测哪个网站，这样更加有针对性，如果要做一个通用型的代理，那可以设置百度等链 接来检测。 另外，我们需要标识每一个代理的状态，如设置分数标识， 100 分代表可用，分 数越少代表越不可用。 检测一次，如果代理可用，我们可以将分数标识立即设置为 100 满 分，也可以在原基础上加 l分；如果代理不可用，可以将分数标识减 l 分，当分数戚到一定阔 值后，代理就直接从数据库移除。 通过这样的标识分数，我们就可以辨别代理的可用情况， 选用的时候会更有针对性。 </p></li><li><p>接口模块： 需要用 API 来提供对外服务的接口 。 其实我们可以直接连接数据库采取对应的数 据，但是这样就需要知道数据库的连接信息，并且要配置连接，而比较安全和方便的方式就 是提供一个 Web API 接口，我们通过访问接口即可拿到可用代理。 另外，由于可用代理可能 有多个，那么我们可以设置一个随机返回某个可用代理的接口，这样就能保证每个可用代理 都可以取到，实现负载均衡</p></li></ol><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fw7uv32bfaj30px0cfahk.jpg" alt=""></p><p><a href="https://github.com/Python3WebSpider/ProxyPool" target="_blank" rel="noopener">我们需要自己造轮子吗</a>  我觉得这要分情况。 </p><p><br><br></p><p>我们为什么要使用cookie池</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookies是我们登陆一个页面的接口，不登陆固然可以获取网页源码，但是会受访问限制，以及不具有一些页面的权限，比如微博来说，我们的cookie池实际上就是多个微博账号的信息。</span><br></pre></td></tr></table></figure><p>与上面ip池的搭建差别是一些微博账号是我们需要自己通过某些渠道购买的。</p><p><a href="https://github.com/Python3WebSpider/CookiesPool" target="_blank" rel="noopener">轮子</a></p>]]></content>
+    <content type="html"><![CDATA[<p>有关基本思路的描述</p> <a id="more"></a><p>这篇博客的目的是，尝试搞懂我最近做了什么.</p><p>我们为什么要用代理池？<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">部分网站有反爬虫措施，当我们使用一个ip地址对该网站进行过多的访问时，会被反爬虫机制自动视为爬虫，从而ip拉黑.</span><br></pre></td></tr></table></figure><p>代理池的构建是怎样的？<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对网上的免费ip代理网站进行爬取(西刺，proxy360)，它们网站的ip源是完全暴露在网页源码上的，我们只用简单的进行分析，就可以拿到足够的ip.</span><br></pre></td></tr></table></figure><p>如此一来，思路很清晰，设计一个爬虫，针对几个免费的网站解析爬取，将拿到 ip 进行筛选，排名，存入数据库。  并可以实现获取接口，即调即用。</p><p><code>基本模块分为 4块：存储模块、获取模块、检测模块、接口模块</code></p><p>###</p><ol><li><p>存储模块： 负责存储抓取下来的代理。 首先要保证代理不重复， 要标识代理的可用情况，还 要动态实时处理每个代理，所以一种比较高效和方便的存储方式就是使用 Redis 的 Sorted Set，即有序集合。</p></li><li><p>获取模块： 需要定时在各大代理网站抓取代理。 代理可以是免费公开代理也可以是付费代 理，代理的形式都是 IP 加端口，此模块尽量从不同来源获取，尽量抓取高匿代理，抓取成功 之后将可用代理保存到数据库中。 </p></li><li><p>检测模块： 需要定时检测数据库中的代理。 这里需要设置一个检测链接，最好是爬取哪个网 站就检测哪个网站，这样更加有针对性，如果要做一个通用型的代理，那可以设置百度等链 接来检测。 另外，我们需要标识每一个代理的状态，如设置分数标识， 100 分代表可用，分 数越少代表越不可用。 检测一次，如果代理可用，我们可以将分数标识立即设置为 100 满 分，也可以在原基础上加 l分；如果代理不可用，可以将分数标识减 l 分，当分数戚到一定阔 值后，代理就直接从数据库移除。 通过这样的标识分数，我们就可以辨别代理的可用情况， 选用的时候会更有针对性。 </p></li><li><p>接口模块： 需要用 API 来提供对外服务的接口 。 其实我们可以直接连接数据库采取对应的数 据，但是这样就需要知道数据库的连接信息，并且要配置连接，而比较安全和方便的方式就 是提供一个 Web API 接口，我们通过访问接口即可拿到可用代理。 另外，由于可用代理可能 有多个，那么我们可以设置一个随机返回某个可用代理的接口，这样就能保证每个可用代理 都可以取到，实现负载均衡</p></li></ol><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fw7uv32bfaj30px0cfahk.jpg" alt=""></p><p><a href="https://github.com/Python3WebSpider/ProxyPool" target="_blank" rel="noopener">我们需要自己造轮子吗</a>  我觉得这要分情况。 </p><p><br><br></p><p>我们为什么要使用cookie池</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookies是我们登陆一个页面的接口，不登陆固然可以获取网页源码，但是会受访问限制，以及不具有一些页面的权限，比如微博来说，我们的cookie池实际上就是多个微博账号的信息。</span><br></pre></td></tr></table></figure><p>与上面ip池的搭建差别是一些微博账号是我们需要自己通过某些渠道购买的。</p><p><a href="https://github.com/Python3WebSpider/CookiesPool" target="_blank" rel="noopener">轮子</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-         &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;我写这篇博客的目的是，是尝试搞懂我最近做了什么，内容含金量上，我觉得很差。&lt;/p&gt;
-&lt;p&gt;我们为什么要用代理池？&lt;br&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
-      
+      &lt;p&gt;有关基本思路的描述&lt;/p&gt;
     
     </summary>
     
@@ -107,17 +141,13 @@
     <link href="httpsp://yoursite.com/2018/10/04/huadongpojie/"/>
     <id>httpsp://yoursite.com/2018/10/04/huadongpojie/</id>
     <published>2018-10-04T10:44:21.396Z</published>
-    <updated>2018-10-09T16:17:21.332Z</updated>
+    <updated>2018-10-20T09:56:17.090Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a>   <p> 注: 本文针对[<em>滑动验证被切割随机打乱，并根据源码中 <strong>&lt; DIV &gt;</strong> 标签顺序进行 <strong>取块排列</strong>  验证情况 ，属于常见的一种混淆方式</em>]</p><hr><p>关键词：</p><ol><li><strong><a href="#1" target="_self">图像分析</a></strong></li><li><strong><a href="#2" target="_self">图像拼接</a></strong></li></ol><p id="1"><br>图像分析:</p><p>   &nbsp;&nbsp; 我们以<a href="https://www.huxiu.com/" target="_blank" rel="noopener">虎嗅网</a>登陆页面为例，我们在输入手机注册前，需要通过一个滑动式的 <em>captcha</em> ,我们可以通过<code>webdriver.chrome  + selenium</code> 来模拟拖动，问题就在于究竟要拖动多远？拖动的距离究竟是多少？(offset 究竟是多少？)</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fvxl234pokj30dg07w76i.jpg" alt="这是截图"></p><p>   &nbsp;&nbsp;仔细一想，如果有一个不存在缺口的<strong>源图片</strong>，那就舒服了，因为那样的话，我们只需比较，<code>源图哪些像素块，比上面的图形颜色更深，从而判断出深颜色缺口的位置</code>,这样我们就得到了，需要模拟拖动的距离了。那么从哪里可以得到原始图片呢？<br>   F12审查代码时，发现了这样两个&lt; div&gt;:</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fvxku4epdej31620ew0uu.jpg" alt="黄线标出"></p><p>我们打开后发现，里面图片链接全部指向各自的那一个图片，<a href="http://ww1.sinaimg.cn/large/006YPp6gly1fvxkuhcc8ij31630iq41p.jpg" target="_blank" rel="noopener">一个长这样</a>,<a href="http://ww1.sinaimg.cn/large/006YPp6gly1fvxkxx3xzuj30kc0doabb.jpg" target="_blank" rel="noopener">一个长这样</a>,这，这！这不就是有缺口和没缺口的图片吗？</p><p></p><p id="2"> <br><br> 图像拼接:</p><br>等等，为什么乱了？<p></p><p>对，如果我们仔细观察，我们发现图片是被切割打乱了的，而且，我们判断，如果想得到原图，一定是要像拼积木一样把这些小块重新排列组合,那么，有什么规律在其中呢？我们该怎样一个一个拼呢？<br>其实，不难发现，我们在打开那两个标签后，我们发现一些整整齐齐的从上到下的标签，并且还有   <code>position</code>属性，x,值以12为差，最小1 最大 277，但y只有 0 或 58，由此分析出，从上到下，是我们取积木的顺序，取打乱图的第一个(x,y)坐标点对应处的一块积木，然后拼接到一个空白框的左上角，然后接着从乱图里面取出第二个位置的积木，紧挨着刚才那一个向右，此行满了换下一行，以此类推,最终得到一个完整图。<br>这样的话，我们的分析就结束了，然后我们通过像素比较就可以找出，缺口的位置，然后模拟拖动就ok了。<br>注意，实际应用中，我们需要实验性模拟拖动几次，再对拖动距离distance进行微修正，从而提高准确率。<br><br><br><br><a href="https://paste.ubuntu.com/p/y7PSVFdxsJ/" target="_blank" rel="noopener">源码</a><br><br><br><a href="https://www.jianshu.com/p/c8df1194b514" target="_blank" rel="noopener">参考博客</a></p>]]></content>
+    <content type="html"><![CDATA[<p>验证码的破解，是网站爬虫正常运行所必须具备的功能。</p><a id="more"></a>   <p> 注: 本文针对[<em>滑动验证被切割随机打乱，并根据源码中 <strong>&lt; DIV &gt;</strong> 标签顺序进行 <strong>取块排列</strong>  验证情况 ，属于常见的一种混淆方式</em>]</p><hr><p>关键词：</p><ol><li><strong><a href="#1" target="_self">图像分析</a></strong></li><li><strong><a href="#2" target="_self">图像拼接</a></strong></li></ol><p id="1"><br>图像分析:</p><p>   &nbsp;&nbsp; 我们以<a href="https://www.huxiu.com/" target="_blank" rel="noopener">虎嗅网</a>登陆页面为例，我们在输入手机注册前，需要通过一个滑动式的 <em>captcha</em> ,我们可以通过<code>webdriver.chrome  + selenium</code> 来模拟拖动，问题就在于究竟要拖动多远？拖动的距离究竟是多少？(offset 究竟是多少？)</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fvxl234pokj30dg07w76i.jpg" alt="这是截图"></p><p>   &nbsp;&nbsp;仔细一想，如果有一个不存在缺口的<strong>源图片</strong>，那就舒服了，因为那样的话，我们只需比较，<code>源图哪些像素块，比上面的图形颜色更深，从而判断出深颜色缺口的位置</code>,这样我们就得到了，需要模拟拖动的距离了。那么从哪里可以得到原始图片呢？<br>   F12审查代码时，发现了这样两个&lt; div&gt;:</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fvxku4epdej31620ew0uu.jpg" alt="黄线标出"></p><p>我们打开后发现，里面图片链接全部指向各自的那一个图片，<a href="http://ww1.sinaimg.cn/large/006YPp6gly1fvxkuhcc8ij31630iq41p.jpg" target="_blank" rel="noopener">一个长这样</a>,<a href="http://ww1.sinaimg.cn/large/006YPp6gly1fvxkxx3xzuj30kc0doabb.jpg" target="_blank" rel="noopener">一个长这样</a>,这，这！这不就是有缺口和没缺口的图片吗？</p><p></p><p id="2"> <br><br> 图像拼接:</p><br>等等，为什么乱了？<p></p><p>对，如果我们仔细观察，我们发现图片是被切割打乱了的，而且，我们判断，如果想得到原图，一定是要像拼积木一样把这些小块重新排列组合,那么，有什么规律在其中呢？我们该怎样一个一个拼呢？<br>其实，不难发现，我们在打开那两个标签后，我们发现一些整整齐齐的从上到下的标签，并且还有   <code>position</code>属性，x,值以12为差，最小1 最大 277，但y只有 0 或 58，由此分析出，从上到下，是我们取积木的顺序，取打乱图的第一个(x,y)坐标点对应处的一块积木，然后拼接到一个空白框的左上角，然后接着从乱图里面取出第二个位置的积木，紧挨着刚才那一个向右，此行满了换下一行，以此类推,最终得到一个完整图。<br>这样的话，我们的分析就结束了，然后我们通过像素比较就可以找出，缺口的位置，然后模拟拖动就ok了。<br>注意，实际应用中，我们需要实验性模拟拖动几次，再对拖动距离distance进行微修正，从而提高准确率。<br><br><br><br><a href="https://paste.ubuntu.com/p/y7PSVFdxsJ/" target="_blank" rel="noopener">源码</a><br><br><br><a href="https://www.jianshu.com/p/c8df1194b514" target="_blank" rel="noopener">参考博客</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;   
-&lt;p&gt; 注: 本文针对[&lt;em&gt;滑动验证被切割随机打乱，并根据源码中 &lt;strong&gt;&amp;lt; DIV &amp;gt;&lt;/strong&gt; 标签顺序进行 &lt;strong&gt;取块排列&lt;/strong&gt;  验证情况 ，属于常见的一种混淆方式&lt;/em&gt;]
-      
+      &lt;p&gt;验证码的破解，是网站爬虫正常运行所必须具备的功能。&lt;/p&gt;
     
     </summary>
     

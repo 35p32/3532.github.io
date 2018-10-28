@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Scrapy框架(二) | 35.32</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Scrapy框架(二)</h1><a id="logo" href="/.">35.32</a><p class="description">正如我视笛卡尔的愚蠢的本质</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Scrapy框架(二)</h1><div class="post-meta">Oct 28, 2018</div><div class="post-content"><p>从实例中看scrapy框架中各部分的功能</p>
+<p><img src="https://wx1.sinaimg.cn/mw690/6c3e6b13gy1fwjoq4i6rcj20zk0wk4qp.jpg" alt=""></p>
+<a id="more"></a>
+<p>取的目标网站为：<a href="https://image.so.com" target="_blank" rel="noopener">https://image.so.com</a></p>
+<p>打开浏览器开发者工具，过滤器切换到XHR选项,下拉页面，可以看到下面就会呈现许多Ajax请求</p>
+<p><img src="https://ask.qcloudimg.com/http-save/developer-news/q8remsppeb.jpeg" alt=""></p>
+<p><img src="https://ask.qcloudimg.com/http-save/developer-news/7xvqjdt74l.jpeg" alt=""></p>
+<p>返回格式是JSON。其中字段就是一张张图片的详情信息，包含了30张图片的ID、名称、链接、缩略图等信息。另外观察Ajax请求的参数信息，有一个参数一直在变化，这个参数很明显就是偏移量。当为30时，返回的是前30张图片，sn为60时，返回的就是第31~60张图片。</p>
+<p>实际上，我们向浏览器发送ajax请求，我们从网址上，即被url编码的params列表，比如：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fwo4qvh794j311b0bu75u.jpg" alt=""></p>
+<p>我们看到了:</p>
+<ol>
+<li>ch</li>
+<li>sn</li>
+<li>listtype</li>
+<li>temp</li>
+</ol>
+<p>所以所谓的参数列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">params&#123;</span><br><span class="line">    xxx</span><br><span class="line">    xxx</span><br><span class="line">    xxx</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只用含有这几个参数就可以了。</p>
+<hr>
+<p>分析完毕后，开始新建项目.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject images360</span><br></pre></td></tr></table></figure>
+<p>cd 到这个项目的 spiders项目下，创建一个爬虫名为<code>images360</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider images360  images.so.com</span><br></pre></td></tr></table></figure>
+<p><strong>有了爬虫，接下来应该做什么？</strong>🧐</p>
+<h2 id="第一"><a href="#第一" class="headerlink" title="第一"></a>第一</h2><p>肯定是要对spiders处理，我们进入spiders文件夹里面的<code>images.py</code>里看，爬虫有了，方法要我们创建。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fwo522pfeyj30ld0ic0ti.jpg" alt=""></p>
+<p>这里的爬虫有三个部分:</p>
+<p><em>1</em> :  <code>name</code>是爬虫名，<code>allowed_domain</code>是访问的域名，<code>start_urls</code>的含义是过滤爬取的域名，在插件OffsiteMiddleware启用的情况下（默认是启用的），不在此允许范围内的域名就会被过滤，而不会进行爬取,</p>
+<p>请注意,以上三个部分，都是在我们第二个命令执行时，S框架自动生成的，我们不用动.</p>
+<p><em>2</em>: <code>start_requests</code>就算是我们熟悉的通过循环向浏览器发送ajax请求，<code>parse</code>是对返回的response进行解析，我们知道，基本的爬虫实现都是在这里做的。</p>
+<p>我们重点关注其他部分，也就是框架的其他环节</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">item</span><br><span class="line">middleware</span><br><span class="line">settings</span><br><span class="line">piplines</span><br></pre></td></tr></table></figure>
+<p><code>item</code>:打个比方，你想要你爬到的东西的什么部分？你希望他们以什么样子交给你？</p>
+<p>​               我想要网站图片的id,链接地址，主题，缩略图,我想要它们以一个字典的形式呈交给我</p>
+<p>​              那么，item.py就是干这个的.​           </p>
+<p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fwo5bmi8y8j30h80ai3ym.jpg" alt=""></p>
+<p><code>middleware</code>:中间件，作用是修改代理ip啦，访问浏览器的user_agent啦，<a href="https://blog.csdn.net/yancey_blog/article/details/53896092" target="_blank" rel="noopener">了解一下</a> ,此例不用middleware     </p>
+<p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fwo6sjw5saj30mq0p80ua.jpg" alt=""></p>
+</div><div class="tags"><a href="/tags/爬虫/">爬虫</a></div><div class="post-nav"><a class="next" href="/2018/10/28/Ajax和XHR/">Ajax和XHR</a></div><div id="container"></div><link rel="stylesheet" href="https://35p32.github.io/gitment/style/default.css"><script src="https://35p32.github.io/gitment/dist/gitment.browser.js"></script><script>var gitment = new Gitment({
+  owner: '35p32## Your GitHub ID, e.g. username',
+  repo: 'cogito',
+  oauth: {
+    client_id: 'e40571b1a5ccce57c5c4## GitHub client ID, e.g. 75752dafe7907a897619',
+    client_secret: 'e7020e3140ee19bf8bea9bceece0133736bc5057',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/前端基础/" style="font-size: 15px;">前端基础</a> <a href="/tags/话/" style="font-size: 15px;">话</a> <a href="/tags/爬虫/" style="font-size: 15px;">爬虫</a> <a href="/tags/工具/" style="font-size: 15px;">工具</a> <a href="/tags/爬/" style="font-size: 15px;">爬</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/Scrapy框架(二)/">Scrapy框架(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/28/Ajax和XHR/">Ajax和XHR</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/Scrapy/">Scrapy框架解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/21/nuisance/">不该死的人，还活着</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/20/wechatspider/">qppium模拟---微信朋友圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/20/MongoDB/">MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/08/sougoupachong/">写在学习代理池和cookie池之后</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/07/python_new/">python の __new__()</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/07/photo/">关于海</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/04/huadongpojie/">GEETEST滑动验证码破解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://www.baidu.com/s?ie=UTF-8&amp;wd=vps%E6%90%AD%E5%BB%BA" title="眼" target="_blank">眼</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">35.32.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

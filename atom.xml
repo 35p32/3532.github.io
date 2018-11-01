@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="httpsp://yoursite.com/"/>
-  <updated>2018-10-31T01:44:48.609Z</updated>
+  <updated>2018-11-01T03:48:52.276Z</updated>
   <id>httpsp://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ template —— 模板基础（一）</title>
+    <link href="httpsp://yoursite.com/2018/11/01/C++-template-%E2%80%94%E2%80%94-%E6%A8%A1%E6%9D%BF%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>httpsp://yoursite.com/2018/11/01/C++-template-——-模板基础（一）/</id>
+    <published>2018-11-01T03:33:01.175Z</published>
+    <updated>2018-11-01T03:48:52.276Z</updated>
+    
+    <content type="html"><![CDATA[<p>C++的魅力，实在使人难以忘却。</p><a id="more"></a><p><a href="https://www.cnblogs.com/yyxt/category/772515.html" target="_blank" rel="noopener">拜读</a></p><p>本文转载于: <a href="https://www.cnblogs.com/yyxt/" target="_blank" rel="noopener">博客园_小天</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;C++的魅力，实在使人难以忘却。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="httpsp://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>完美哈希</title>
+    <link href="httpsp://yoursite.com/2018/10/31/Scrapy%E6%A1%86%E6%9E%B6%E9%80%9A%E7%94%A8%E7%88%AC%E8%99%AB/"/>
+    <id>httpsp://yoursite.com/2018/10/31/Scrapy框架通用爬虫/</id>
+    <published>2018-10-31T01:53:27.982Z</published>
+    <updated>2018-11-01T16:15:39.315Z</updated>
+    
+    <content type="html"><![CDATA[<p>通过构造完美哈希，可以在O(1)时间内实现关键字的查询。</p><p> 关键字表算法: 通过构造完美哈希，可以在O(1)时间内实现关键字的查询.</p><a id="more"></a><p><a href="https://www.cnblogs.com/gaochundong/p/hashtable_and_perfect_hashing.html" target="_blank" rel="noopener">哈希综述</a> </p><p><a href="https://www.ibm.com/developerworks/cn/linux/l-gperf.html" target="_blank" rel="noopener">gperf算法</a></p><p>PHF(<em>Perfect Hash Function</em>)和MPHF(<em>Minimal Perfect Hash Function</em>)生成算法：</p><p>  <a href="http://homepages.dcc.ufmg.br/~nivio/papers/wea05.pdf" target="_blank" rel="noopener">A Practical Minimal Perfect Hashing Method</a></p><p>  <a href="http://homepages.dcc.ufmg.br/~nivio/papers/tr06.pdf" target="_blank" rel="noopener">An Approach for Minimal Perfect Hash Functions for Very Large Databases</a></p><p>  <a href="http://homepages.dcc.ufmg.br/~nivio/papers/tr004_04.ps" target="_blank" rel="noopener">A New algorithm for constructing minimal perfect hash functions</a></p><p>  <a href="http://citeseer.ist.psu.edu/czech92optimal.html" target="_blank" rel="noopener">A optimal algorithm to generating minimal perfect hash function</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;通过构造完美哈希，可以在O(1)时间内实现关键字的查询。&lt;/p&gt;
+&lt;p&gt; 关键字表算法: 通过构造完美哈希，可以在O(1)时间内实现关键字的查询.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="complier" scheme="httpsp://yoursite.com/tags/complier/"/>
+    
+  </entry>
   
   <entry>
     <title>Scrapy对接Splash</title>

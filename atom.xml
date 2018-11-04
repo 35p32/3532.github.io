@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="httpsp://yoursite.com/"/>
-  <updated>2018-11-01T03:48:52.276Z</updated>
+  <updated>2018-11-04T10:17:32.002Z</updated>
   <id>httpsp://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有限状态自动机</title>
+    <link href="httpsp://yoursite.com/2018/11/04/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA/"/>
+    <id>httpsp://yoursite.com/2018/11/04/有限状态自动机/</id>
+    <published>2018-11-04T08:59:36.185Z</published>
+    <updated>2018-11-04T10:17:32.002Z</updated>
+    
+    <content type="html"><![CDATA[<p>总结</p><a id="more"></a><p>举例子如图:</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fww66hr1b9j30vz0mytbc.jpg" alt=""></p><p>如图 <code>(q0,a)-&gt;q1,(q0,b)-&gt;q0</code> 这就叫做状态转移函数，咋解释呢？ </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">黄色圆形代表一个一个状态，内部数字就是状态对应的编号</span><br><span class="line">q0 接受 a 到达 q1 </span><br><span class="line">q0 接受 b 到达 q0</span><br><span class="line">. . .</span><br></pre></td></tr></table></figure><p>然后就像你看到的，把这些状态(<code>小括号包括住的</code>)积攒在一起，就是我们的图1的 <code>S</code>也叫<code>状态集</code></p><p>这些  <code>从某个状态到达另外一个状态</code> 的过程，本身可以称作一个函数，这些函数的集合叫做，转移函数集合。</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fww682bj7lj30w00ka40t.jpg" alt=""></p><p><code>有限状态自动机：</code></p><ol><li>非确定有限状态自动机(NFA)</li><li>确定的有限状态自动机(DFA)</li></ol><p>我们第一个图就是个确定的，来看看一个不确定的:</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fww6kumrtij30u00n5dhr.jpg" alt=""></p><p>这个为什么叫不确定的状态自动机？  你看看， 加入我们给 <code>q0 传递 a</code>  ,你能知道 q0到q0，还是q0到q1？？ 你是不确定的，所以含有这种构造的自动机就叫<code>NFA</code></p><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>问？在NFA中，我们在初始状态为 <code>q0</code> 时，传入 字符串s=<code>&quot;a&quot;</code>,请问对于NFA，它可以接受吗？</p><p>答：可以，尽管q0 有可能接受 <code>a</code>后还是状态本身，但只要有一条路可转移走，NFA在经过<code>遍历</code> 后，就可以找到了！</p><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>我们该怎样把这么一个抽象的自动机通过代码实现呢？</p><p>我们其中一个办法就是，图的邻接矩阵实现。</p><p><img src="http://ww1.sinaimg.cn/large/006YPp6gly1fww6umswk8j30sq0nnwg3.jpg" alt=""></p><p>解释：0接受a变为1；0接受b变成0 以此类推</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;总结&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="complier" scheme="httpsp://yoursite.com/tags/complier/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从微博spider详解Scrapy</title>
+    <link href="httpsp://yoursite.com/2018/11/03/%E4%BB%8E%E5%BE%AE%E5%8D%9Aspider%E8%AF%A6%E8%A7%A3Scrapy/"/>
+    <id>httpsp://yoursite.com/2018/11/03/从微博spider详解Scrapy/</id>
+    <published>2018-11-03T13:25:57.811Z</published>
+    <updated>2018-11-03T13:25:57.818Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文旨在彻底剖析Scrapy爬虫框架</p><a id="more"></a><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>针对: <code>https://m.weibo.cn</code> 爬取新浪微博用户的公开基本信息，如用户昵称、头像、用户的关注、粉丝列表以 及发布的微博等，这些信息抓取之后保存至 MongoDB。</p><h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>情确保前文所讲的代理池、 Cookies 池已经实现并可以正常运行，安装 Scrapy、 PyMongo 库，如 没有安装可以参考前文内容</p><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>针对请求解析不再过多阐述， </p><p>从XHR分析可知，请求类型为Get ,因此，模仿创造请求。</p><p><code>https://m.weibo.cn/api/container/getlndex?contaiaerid= 231 051二followers-_1916655407 &amp;luicode= I 00000 l l&amp;lfid= I 005051916655407 &amp;featurecode=20000320&amp;type =uid&amp;value= 1916655407 &amp;page=2</code></p><p>其中最主要的参数就是 containerid 和 page。 有了这两个参数，我们同样可以获取请求结果。 我 们可以将接口精简为  <a href="https://m.weibo.cn/api/container/getIndex?containerid=231051-_followers-_1916655407&amp;page=2" target="_blank" rel="noopener">https://m.weibo.cn/api/container/getIndex?containerid=231051-_followers-_1916655407&amp;page=2</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文旨在彻底剖析Scrapy爬虫框架&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="爬虫" scheme="httpsp://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>C++ template —— 模板基础（一）</title>

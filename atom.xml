@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="httpsp://yoursite.com/"/>
-  <updated>2018-11-04T10:17:32.002Z</updated>
+  <updated>2018-11-04T16:29:43.125Z</updated>
   <id>httpsp://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>红龙</title>
+    <link href="httpsp://yoursite.com/2018/11/05/%E7%BA%A2%E9%BE%99/"/>
+    <id>httpsp://yoursite.com/2018/11/05/红龙/</id>
+    <published>2018-11-04T16:23:49.354Z</published>
+    <updated>2018-11-04T16:29:43.125Z</updated>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><p>每当我认为，自己清醒的认识到，它的起因，经过，和结果时，我却无法集中注意力，我无权，站在这样一个高地。</p><p>我审视着它，我看到它吟唱出刺耳的密密麻麻的语句，我感觉得到它们融化，汇合，变为正常，变为我身边的椅子，水杯，台灯，我眼前的手掌的毛孔。</p><p>亲爱的，我不得不这样讲，我已由它组成，我不知该怎样做，因为，我已由它组成。</p><p>它是红龙，善良而邪恶的无形体现，黑色和白色融合，于我体内而逃于我身，赐予我悲伤和快乐的一切情绪，施加于我痛苦和狂热的次次混乱。</p><p>我望着红龙。</p><p>请你告诉我，为什么，我目光下的极限，仅仅是一个可笑无比的紫色的巨大矛盾体。</p><p>红龙，你是诱因，你早已彻彻底底的，屈服于这片土地和星辰，在这使人厌恶的距离里，无休止地接受我的祈祷。</p><p>它将会绽放出鲜艳的赤红色的花，它紧闭的嘴中必将发出人类一样的叫声，我已感受的到，红龙之下一切的复苏，</p><p>切断一切灌输后的大地，将会彻底区分于你的肌肤。</p><p>我必定要杀死它。</p><p>红龙。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+    
+    </summary>
+    
+    
+      <category term="话" scheme="httpsp://yoursite.com/tags/%E8%AF%9D/"/>
+    
+  </entry>
   
   <entry>
     <title>有限状态自动机</title>

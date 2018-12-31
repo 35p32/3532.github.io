@@ -37,30 +37,6 @@
   </entry>
   
   <entry>
-    <title>Java总结</title>
-    <link href="httpsp://yoursite.com/2018/12/11/Java%E6%80%BB%E7%BB%93/"/>
-    <id>httpsp://yoursite.com/2018/12/11/Java总结/</id>
-    <published>2018-12-11T15:15:48.735Z</published>
-    <updated>2018-12-11T15:15:48.748Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="为什么是Java"><a href="#为什么是Java" class="headerlink" title="为什么是Java"></a>为什么是Java</h2><h2 id="Java的安装"><a href="#Java的安装" class="headerlink" title="Java的安装"></a>Java的安装</h2><h2 id="我对Java的看法"><a href="#我对Java的看法" class="headerlink" title="我对Java的看法"></a>我对Java的看法</h2><p> 首先，java对于类的依赖，可以很明显的感受出来，从第一个Java程序来看</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;为什么是Java&quot;&gt;&lt;a href=&quot;#为什么是Java&quot; class=&quot;headerlink&quot; title=&quot;为什么是Java&quot;&gt;&lt;/a&gt;为什么是Java&lt;/h2&gt;&lt;h2 id=&quot;Java的安装&quot;&gt;&lt;a href=&quot;#Java
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="httpsp://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
     <title>机器学习日记_2</title>
     <link href="httpsp://yoursite.com/2018/11/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0(%E4%BA%8C)/"/>
     <id>httpsp://yoursite.com/2018/11/25/机器学习日记(二)/</id>
@@ -424,6 +400,26 @@
     
     
       <category term="爬虫" scheme="httpsp://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ajax和XHR</title>
+    <link href="httpsp://yoursite.com/2018/10/28/Ajax%E5%92%8CXHR/"/>
+    <id>httpsp://yoursite.com/2018/10/28/Ajax和XHR/</id>
+    <published>2018-10-28T02:29:32.444Z</published>
+    <updated>2018-10-28T02:29:32.451Z</updated>
+    
+    <content type="html"><![CDATA[<p>  ajax是asynchronous javascript and XML的简写</p><a id="more"></a><p><a href="https://www.cnblogs.com/xiaohuochai/p/6036475.html" target="_blank" rel="noopener">拜读</a></p><p><br><br><br><br></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  ajax是asynchronous javascript and XML的简写&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="前端基础" scheme="httpsp://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
